@@ -1,0 +1,56 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Player/anjing/tile007.png" type="Texture" id=1]
+[ext_resource path="res://Player/anjing/tile004.png" type="Texture" id=2]
+[ext_resource path="res://Player/anjing/tile008.png" type="Texture" id=3]
+[ext_resource path="res://Player/anjing/tile009.png" type="Texture" id=4]
+[ext_resource path="res://Player/anjing/tile003.png" type="Texture" id=5]
+[ext_resource path="res://Scene/bawa.gd" type="Script" id=6]
+[ext_resource path="res://Player/bawah/Bringer-of-Death_Walk_1.png" type="Texture" id=7]
+[ext_resource path="res://Player/bawah/Bringer-of-Death_Walk_5.png" type="Texture" id=8]
+[ext_resource path="res://Player/bawah/Bringer-of-Death_Walk_7.png" type="Texture" id=9]
+[ext_resource path="res://Player/bawah/Bringer-of-Death_Walk_8.png" type="Texture" id=10]
+[ext_resource path="res://Player/bawah/Bringer-of-Death_Walk_3.png" type="Texture" id=11]
+[ext_resource path="res://Player/bawah/Bringer-of-Death_Walk_6.png" type="Texture" id=12]
+[ext_resource path="res://Player/bawah/Bringer-of-Death_Walk_4.png" type="Texture" id=13]
+[ext_resource path="res://Player/bawah/Bringer-of-Death_Walk_2.png" type="Texture" id=14]
+[ext_resource path="res://Player/anjing/tile005.png" type="Texture" id=15]
+[ext_resource path="res://Player/anjing/tile006.png" type="Texture" id=16]
+[ext_resource path="res://Player/anjing/tile000.png" type="Texture" id=17]
+[ext_resource path="res://Player/anjing/tile001.png" type="Texture" id=18]
+[ext_resource path="res://Player/anjing/tile002.png" type="Texture" id=19]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "monster",
+"speed": 11.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "anjing",
+"speed": 8.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 66.8401, 54.7227 )
+
+[node name="bawa" type="Node2D"]
+position = Vector2( 1278.45, 432.519 )
+script = ExtResource( 6 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 5.99994, -15 )
+scale = Vector2( 2.01194, 2.30175 )
+frames = SubResource( 1 )
+animation = "anjing"
+frame = 9
+playing = true
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( 8.41418, -14.1005 )
+rotation = 1.5708
+shape = SubResource( 2 )

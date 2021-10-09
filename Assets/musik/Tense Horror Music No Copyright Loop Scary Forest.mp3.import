@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Tense Horror Music No Copyright Loop Scary Forest.mp3-df26a5614f94291803f6b854b699795b.mp3str"
+
+[deps]
+
+source_file="res://Assets/musik/Tense Horror Music No Copyright Loop Scary Forest.mp3"
+dest_files=[ "res://.import/Tense Horror Music No Copyright Loop Scary Forest.mp3-df26a5614f94291803f6b854b699795b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

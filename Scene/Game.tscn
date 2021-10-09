@@ -1,0 +1,215 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://Ya/ScrollingBackground.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scene/begron.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/karakternya/tile005.png" type="Texture" id=3]
+[ext_resource path="res://Player/karakternya/tile000.png" type="Texture" id=4]
+[ext_resource path="res://Game.gd" type="Script" id=5]
+[ext_resource path="res://Player/karakternya/tile004.png" type="Texture" id=6]
+[ext_resource path="res://Script/Player.gd" type="Script" id=7]
+[ext_resource path="res://api.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scene/Skor.gd" type="Script" id=9]
+[ext_resource path="res://Player/karakternya/tile002.png" type="Texture" id=10]
+[ext_resource path="res://Player/karakternya/tile001.png" type="Texture" id=11]
+[ext_resource path="res://Player/karakternya/tile003.png" type="Texture" id=12]
+[ext_resource path="res://Scene/Control.gd" type="Script" id=13]
+[ext_resource path="res://Assets/font/CompassPro.ttf" type="DynamicFontData" id=14]
+[ext_resource path="res://Assets/musik/bgm pas main.ogg" type="AudioStream" id=15]
+[ext_resource path="res://Scene/Skor.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Assets/font/MatchupPro.ttf" type="DynamicFontData" id=17]
+[ext_resource path="res://Assets/musik/jumppp22.ogg" type="AudioStream" id=18]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 21.787
+height = 0.0
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 6 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "larii",
+"speed": 12.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 53.8588
+height = 0.0
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 578.377, 61.1378 )
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Node2D
+
+export var scene = preload(\"res://Scene/Musuh.tscn\")
+export var timer : float = 1.0
+
+var random = RandomNumberGenerator.new()
+
+func _ready():
+	if timer == 0:
+		$Timer.wait_time = random.randf_range(2.0, 3.0)
+	else: $Timer.wait_time = timer
+	
+func _process(_delta):
+	if timer == 0:
+		$Timer.wait_time = random.randf_range(2.0, 3.0)
+	else: $Timer.wait_time = timer
+	
+func _on_Timer_timeout():
+	random.randomize()
+	var obs_instance = scene.instance()
+	obs_instance.position = Vector2(1100, random.randf_range(200, 350))
+	get_parent().call_deferred(\"add_child\", obs_instance)
+"
+
+[sub_resource type="DynamicFont" id=6]
+size = 40
+font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 100
+extra_spacing_space = 17
+font_data = ExtResource( 17 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 7.06403, 318.725 )
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2( 116.505, 29.275 )
+script = ExtResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="Player"]
+position = Vector2( 179, 162.5 )
+scale = Vector2( 2.25187, 2.57813 )
+
+[node name="Node2D" type="KinematicBody2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Node2D"]
+position = Vector2( 175.548, 174.476 )
+rotation = 0.96695
+scale = Vector2( 2.47476, 2.40389 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimatedSprite" parent="Player/Node2D"]
+position = Vector2( 201.5, 165.5 )
+scale = Vector2( 2.40244, 2.79687 )
+frames = SubResource( 2 )
+animation = "larii"
+frame = 4
+
+[node name="detek" type="Area2D" parent="Player/Node2D"]
+position = Vector2( 175, 164 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Node2D/detek"]
+position = Vector2( 0, 10 )
+rotation = 0.911062
+shape = SubResource( 3 )
+
+[node name="PlayerSound" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource( 18 )
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="ScrollingBackground" parent="Floor" instance=ExtResource( 1 )]
+margin_left = -46.3429
+margin_top = 476.464
+margin_right = 1933.66
+margin_bottom = 1556.46
+rect_scale = Vector2( 0.584714, 0.543908 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2( 530.46, 552.058 )
+shape = SubResource( 4 )
+
+[node name="Background" parent="." instance=ExtResource( 2 )]
+
+[node name="Spawner" type="Node2D" parent="."]
+position = Vector2( 1084, 350 )
+script = SubResource( 5 )
+timer = 0.0
+
+[node name="Timer" type="Timer" parent="Spawner"]
+autostart = true
+
+[node name="Skor" type="Node2D" parent="."]
+position = Vector2( 396, 406 )
+script = ExtResource( 9 )
+scene = ExtResource( 16 )
+timer = 0.2
+
+[node name="Timer" type="Timer" parent="Skor"]
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+margin_left = 498.0
+margin_top = 58.0
+margin_right = 552.0
+margin_bottom = 126.0
+custom_fonts/font = SubResource( 6 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 12.0
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+margin_right = 1020.0
+margin_bottom = 600.0
+color = Color( 0.352941, 0, 0, 0.737255 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Paused" type="Label" parent="CanvasLayer/Control"]
+anchor_left = 0.406
+anchor_top = 0.353
+anchor_right = 0.605
+anchor_bottom = 0.52
+margin_left = -77.2293
+margin_top = 24.5914
+margin_right = -77.0054
+margin_bottom = 24.3874
+custom_fonts/font = SubResource( 7 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="deadzone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="deadzone"]
+position = Vector2( 9, 304 )
+shape = SubResource( 8 )
+
+[node name="bgm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 15 )
+autoplay = true
+
+[node name="GameSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Api" parent="." instance=ExtResource( 8 )]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="area_entered" from="Player/Node2D/detek" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="Player/Node2D/detek" to="CanvasLayer/Control" method="_on_Area2D_area_entered"]
+[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Skor/Timer" to="Skor" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

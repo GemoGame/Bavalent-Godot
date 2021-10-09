@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bgm pas main.ogg-23ac404f5f8d1b3dacae003391f1a45f.oggstr"
+
+[deps]
+
+source_file="res://Assets/musik/bgm pas main.ogg"
+dest_files=[ "res://.import/bgm pas main.ogg-23ac404f5f8d1b3dacae003391f1a45f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

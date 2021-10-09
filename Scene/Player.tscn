@@ -1,0 +1,43 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Player/karakternya/tile000.png" type="Texture" id=1]
+[ext_resource path="res://Script/Player.gd" type="Script" id=2]
+[ext_resource path="res://Player/karakternya/tile005.png" type="Texture" id=3]
+[ext_resource path="res://Player/karakternya/tile004.png" type="Texture" id=4]
+[ext_resource path="res://Player/karakternya/tile002.png" type="Texture" id=5]
+[ext_resource path="res://Player/karakternya/tile001.png" type="Texture" id=6]
+[ext_resource path="res://Player/karakternya/tile003.png" type="Texture" id=7]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 21.9908
+height = 9.38831
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "larii",
+"speed": 12.0
+} ]
+
+[node name="Player" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 543, 276.5 )
+scale = Vector2( 2.25187, 2.57813 )
+
+[node name="Node2D" type="KinematicBody2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D"]
+position = Vector2( 522.548, 277.476 )
+rotation = 0.96695
+scale = Vector2( 2.47476, 2.40389 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimatedSprite" parent="Node2D"]
+position = Vector2( 554, 269 )
+scale = Vector2( 2.90244, 3.34375 )
+frames = SubResource( 2 )
+animation = "larii"
+frame = 4

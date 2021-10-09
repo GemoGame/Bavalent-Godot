@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Ya/scrolling background.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Background/7.png" type="Texture" id=2]
+
+[sub_resource type="Shader" id=4]
+code = "shader_type canvas_item;
+
+uniform vec2 direction = vec2(1.0,0.0);
+uniform float speed_scale = 0.05;
+
+void fragment(){
+
+     vec2 move = direction * TIME * speed_scale;
+
+     COLOR = texture(TEXTURE, UV + move);   
+}"
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = SubResource( 4 )
+shader_param/direction = Vector2( 1, 0 )
+shader_param/speed_scale = 0.2
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 515.586, 93.6161 )
+
+[node name="injekan" type="Node2D"]
+position = Vector2( 0, -1 )
+
+[node name="scrolling background" type="TextureRect" parent="." instance=ExtResource( 1 )]
+material = SubResource( 5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -6.10352e-05
+margin_top = 486.0
+margin_right = 1980.0
+margin_bottom = 1566.0
+rect_scale = Vector2( 0.515435, 0.535623 )
+texture = ExtResource( 2 )
+stretch_mode = 2
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KinematicBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( 514.46, 584.597 )
+shape = SubResource( 6 )

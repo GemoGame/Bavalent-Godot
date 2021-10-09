@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://tile002(1).png" type="Texture" id=1]
+[ext_resource path="res://tile000(1).png" type="Texture" id=2]
+[ext_resource path="res://tile001(1).png" type="Texture" id=3]
+[ext_resource path="res://tile003(1).png" type="Texture" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "api",
+"speed": 5.0
+} ]
+
+[node name="Api" type="Node2D"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 44.3345, 113.593 )
+rotation = 1.5708
+scale = Vector2( 4.57792, 3.76018 )
+frames = SubResource( 1 )
+animation = "api"
+frame = 1
+playing = true
+flip_h = true
+
+[node name="AnimatedSprite3" type="AnimatedSprite" parent="."]
+position = Vector2( 69.5477, 47.2498 )
+rotation = 1.5708
+scale = Vector2( 4.57792, 4.73246 )
+frames = SubResource( 1 )
+animation = "api"
+playing = true
+flip_h = true
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+position = Vector2( 53.0624, 232.179 )
+rotation = 1.5708
+scale = Vector2( 4.57792, 4.20213 )
+frames = SubResource( 1 )
+animation = "api"
+playing = true
+
+[node name="AnimatedSprite4" type="AnimatedSprite" parent="."]
+position = Vector2( 57.5269, 328.179 )
+rotation = 1.5708
+scale = Vector2( 4.57792, 4.24632 )
+frames = SubResource( 1 )
+animation = "api"
+playing = true
+flip_h = true
+
+[node name="AnimatedSprite5" type="AnimatedSprite" parent="."]
+position = Vector2( 45.7487, 481.593 )
+rotation = 1.5708
+scale = Vector2( 4.57792, 4.20213 )
+frames = SubResource( 1 )
+animation = "api"
+frame = 3
+playing = true
+
+[node name="AnimatedSprite6" type="AnimatedSprite" parent="."]
+position = Vector2( 51.4055, 572.102 )
+rotation = 1.5708
+scale = Vector2( 4.57792, 4.20213 )
+frames = SubResource( 1 )
+animation = "api"
+frame = 3
+playing = true
